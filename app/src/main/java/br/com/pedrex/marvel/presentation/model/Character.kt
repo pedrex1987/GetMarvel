@@ -7,5 +7,5 @@ data class Character (
     val name: String,
     val description: String,
     val resourceURI: String,
-    val image: String
+    val imageURI: String
 ) : Serializable

@@ -9,7 +9,7 @@ class CharacterToModelMapper {
             id = response.id,
             name = response.name,
             description = response.description,
-            image = getImageURI(response.thumbnail.path, response.thumbnail.extension),
+            imageURI = getImageURI(response.thumbnail.path, response.thumbnail.extension),
             resourceURI = response.resourceURI
         )
     }
