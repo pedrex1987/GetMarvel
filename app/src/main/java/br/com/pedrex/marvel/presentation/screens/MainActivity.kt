@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
 
         bindViews()
 
-        viewModel = CharactersViewModel()
+        viewModel = CharactersViewModel(list)
 
         bindAdapter(binding, viewModel)
 

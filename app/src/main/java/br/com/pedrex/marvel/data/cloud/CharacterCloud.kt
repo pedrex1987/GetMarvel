@@ -17,7 +17,7 @@ class CharacterCloud {
     fun getCharacters(page: Int) : Observable<ObjectResponse> {
         return api.fetchCharacters(
             page = page,
-            limit = 2,
+            limit = 30,
             order = "name"
         )
     }

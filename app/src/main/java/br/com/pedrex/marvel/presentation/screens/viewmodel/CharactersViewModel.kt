@@ -24,7 +24,9 @@ interface ContractCartViewModel {
     val output: OutputCartViewModel
 }
 
-class CharactersViewModel : ContractCartViewModel,
+class CharactersViewModel(
+    val mainList: ArrayList<Character>
+) : ContractCartViewModel,
     InputCartViewModel,
     OutputCartViewModel {
 
@@ -49,7 +51,7 @@ class CharactersViewModel : ContractCartViewModel,
             .timeout(40, TimeUnit.SECONDS)
             .subscribe(
                 {
-                    populateObservable.postValue(States.LoadCharacters(it))
+                    populateObservable.postValue(States.LoadCharacters(filterList(it)))
                 },
                 {
                     populateObservable.postValue(
@@ -60,5 +62,15 @@ class CharactersViewModel : ContractCartViewModel,
                     it.printStackTrace()
                 }
             )
+    }
+
+    private fun filterList(newList: List<Character>): List<Character> {
+        return if (mainList.isEmpty()) {
+            newList
+        } else {
+            newList.filter {newPerson ->
+                mainList.none { it.id == newPerson.id }
+            }
+        }
     }
 }
