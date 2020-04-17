@@ -1,5 +1,6 @@
 package br.com.pedrex.marvel.infra
 
+import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -11,10 +12,13 @@ class BuildRetrofit {
     fun build() : Retrofit {
         val logging = HttpLoggingInterceptor()
         logging.level = HttpLoggingInterceptor.Level.BODY
-
         val httpClient = OkHttpClient.Builder()
-        httpClient.addInterceptor(logging)
-        httpClient.addInterceptor(AuthInterceptor())
+        httpClient.apply {
+            addInterceptor(logging)
+            addInterceptor(AuthInterceptor())
+            addNetworkInterceptor(StethoInterceptor())
+        }
+
 
         val gson = GsonBuilder().setLenient().create()
 

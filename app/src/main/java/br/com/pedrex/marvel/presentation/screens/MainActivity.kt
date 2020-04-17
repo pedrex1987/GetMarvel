@@ -13,6 +13,7 @@ import br.com.pedrex.marvel.presentation.model.Character
 import br.com.pedrex.marvel.presentation.screens.adapters.ItemAdapter
 import br.com.pedrex.marvel.presentation.screens.states.States
 import br.com.pedrex.marvel.presentation.screens.viewmodel.CharactersViewModel
+import com.facebook.stetho.Stetho
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
@@ -28,6 +29,8 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(
             this, R.layout.activity_main
         )
+
+        Stetho.initializeWithDefaults(this)
 
         bindViews()
 
@@ -115,13 +118,13 @@ class MainActivity : AppCompatActivity() {
     ) {
         adapterItems = ItemAdapter(list)
         binding.includeList.items.apply {
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
             adapter = adapterItems
         }
     }
 
-    private fun populateList(list: List<Character>) {
-        this.list.addAll(list)
+    private fun populateList(newCharacters: List<Character>) {
+        list.addAll(newCharacters)
         adapterItems.notifyDataSetChanged()
     }
 
