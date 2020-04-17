@@ -19,6 +19,6 @@ class CharacterToModelMapper {
     }
 
     private fun getImageURI(path: String, extension: String): String {
-        return path.plus(extension)
+        return path.plus(".").plus(extension)
     }
 }

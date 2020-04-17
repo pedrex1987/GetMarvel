@@ -2,6 +2,7 @@ package br.com.pedrex.marvel.presentation.screens
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -43,6 +44,7 @@ class MainActivity : AppCompatActivity() {
         binding.apply {
             includeToolbar.apply {
                 tvTitle.text = "Marvel"
+                btAction.visibility = View.GONE
             }
             includeList.also {
                 it.isLoading = true
