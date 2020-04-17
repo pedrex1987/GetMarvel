@@ -5,6 +5,9 @@
 
     <data>
         <variable
+            name="viewModel"
+            type="br.com.pedrex.marvel.presentation.screens.viewmodel.ContractCartViewModel" />
+        <variable
             name="character"
             type="br.com.pedrex.marvel.presentation.model.Character" />
     </data>
@@ -13,7 +16,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="8dp"
+        android:onClick="@{() -> viewModel.input.selectCharacter(character)}"
         app:cardCornerRadius="15dp"
         app:cardElevation="4dp">
 

@@ -1,8 +1,9 @@
 package br.com.pedrex.marvel.presentation.screens
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,7 +37,7 @@ class MainActivity : AppCompatActivity() {
 
         viewModel = CharactersViewModel()
 
-        bindAdapter(binding)
+        bindAdapter(binding, viewModel)
 
         bindObserverViewModel()
 
@@ -114,9 +115,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun bindAdapter(
-        binding: ActivityMainBinding
+        binding: ActivityMainBinding,
+        viewModel: CharactersViewModel
     ) {
-        adapterItems = ItemAdapter(list)
+        adapterItems = ItemAdapter(list, viewModel)
         binding.includeList.items.apply {
             layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
             adapter = adapterItems
@@ -128,7 +130,10 @@ class MainActivity : AppCompatActivity() {
         adapterItems.notifyDataSetChanged()
     }
 
-    private fun showDetail(car: Character) {
-
+    private fun showDetail(person: Character) {
+        val intent = Intent(this, DetailPerson::class.java).apply {
+            putExtra("model", person)
+        }
+        startActivity(intent)
     }
 }

@@ -8,9 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.pedrex.marvel.R
 import br.com.pedrex.marvel.databinding.ItemsBinding
 import br.com.pedrex.marvel.presentation.model.Character
+import br.com.pedrex.marvel.presentation.screens.viewmodel.CharactersViewModel
 
 class ItemAdapter(
-    private val items: ArrayList<Character>
+    private val items: ArrayList<Character>,
+    val viewModel: CharactersViewModel
 ) : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         return ItemViewHolder(
@@ -29,6 +31,7 @@ class ItemAdapter(
         holder.binding?.let {
             val character = items[position]
             it.character = character
+            it.viewModel = viewModel
             it.executePendingBindings()
         }
     }
