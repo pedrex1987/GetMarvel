@@ -21,4 +21,13 @@ class CharacterCloud {
             order = "name"
         )
     }
+
+    fun getCharactersByName(page: Int, name: String) : Observable<ObjectResponse> {
+        return api.fetchCharactersByName(
+            page = page,
+            limit = 30,
+            order = "name",
+            name = name
+        )
+    }
 }

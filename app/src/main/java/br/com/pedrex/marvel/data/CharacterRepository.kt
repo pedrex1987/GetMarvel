@@ -11,6 +11,12 @@ class CharacterRepository {
     private val cloud = CharacterCloud()
 
     fun getCharacters(page: Int): Observable<List<Character>> {
-        return cloud.getCharacters(page).map { mapper.transform(it.data.characters) }
+        return cloud.getCharacters(page)
+            .map { mapper.transform(it.data.characters) }
+    }
+
+    fun getCharactersByName(page: Int, name: String): Observable<List<Character>> {
+        return cloud.getCharactersByName(page, name)
+            .map { mapper.transform(it.data.characters) }
     }
 }

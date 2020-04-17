@@ -13,4 +13,12 @@ interface Api {
         @Query("limit") limit: Int,
         @Query("orderBy") order: String
     ): Observable<ObjectResponse>
+
+    @GET("v1/public/characters")
+    fun fetchCharactersByName(
+        @Query("offset") page: Int,
+        @Query("limit") limit: Int,
+        @Query("orderBy") order: String,
+        @Query("nameStartsWith") name: String
+    ): Observable<ObjectResponse>
 }
